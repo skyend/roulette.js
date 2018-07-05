@@ -1,3 +1,9 @@
-import Cat from './cat.js';
-import Dog from './dog.js';
-export { Dog, Cat };
+/**
+ * @author Seung Hun Han ( skyend@github.com, theskyend0@gmail.com )
+ */
+
+import {Roulette} from './Roulette';
+
+export { Roulette };
+
+global.Rouletter = Roulette;

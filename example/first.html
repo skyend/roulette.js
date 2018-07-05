@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <link href="css/roulette.css?v=1" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="sky-roulette">
+
+  <div class="capture-box">
+
+  </div>
+  <div data-roulette-partitions class="roulette-pane">
+    <div data-part-id="1" class="roulette-part p1">
+      A
+    </div>
+    <div data-part-id="2" class="roulette-part p2">
+      B
+    </div>
+    <div data-part-id="3" class="roulette-part p3">
+      C
+    </div>
+    <div data-part-id="4" class="roulette-part p4">
+      D
+    </div>
+    <div data-part-id="5" class="roulette-part p5">
+      E
+    </div>
+    <div data-part-id="6" class="roulette-part p6">
+      F
+    </div>
+  </div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+<script src="../lib/rouletter.js"></script>
+<script>
+  var r = new Rouletter('.sky-roulette', {
+    partWidth:70,
+    translateXPerSecond : 6000,
+    minTranslateXPerSecond : 300,
+    fps : 100,
+    xReductionPercentagePerSecond : .78,
+    marginX : 10 ,
+    cursorElement : document.querySelector('.capture-box'),
+    onStop : function (target) {
+      console.log('stop', target, target.getAttribute('data-part-id'));
+
+      setTimeout(function () {
+        $.ajax({
+          url : "https://www.random.org/integers/?num=1&min=1&max=6&col=1&base=10&format=plain&rnd=new"
+        }).done(function(data){
+
+          r.start({
+            stopTarget : document.querySelector('[data-part-id="'+data.trim()+'"]'),
+          });
+        })
+
+        // r.start({
+        //   stopTarget : document.querySelector('[data-part-id="'+ Math.floor(Math.random() * 6 + 1) +'"]'),
+        // });
+      }, 1000)
+    }
+  });
+
+  r.init();
+  r.start({
+    stopTarget : document.querySelector('[data-part-id="5"]'),
+  });
+
+
+
+  $.ajax({
+    url : "https://www.random.org/integers/?num=1&min=1&max=6&col=1&base=10&format=plain&rnd=new"
+  }).done(function(data){
+
+    r.start({
+      stopTarget : document.querySelector('[data-part-id="'+data.trim()+'"]'),
+    });
+  })
+
+
+</script>
+</body>
+</html>

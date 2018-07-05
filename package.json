@@ -1,5 +1,5 @@
 {
-  "name": "webpack-library-starter",
+  "name": "rouletter",
   "version": "1.0.2",
   "description": "Produce universal library with webpack and es6",
   "main": "lib/library.js",
@@ -31,6 +31,7 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.51",
     "@babel/core": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.0.0-beta.51",
     "babel-eslint": "^8.0.3",
     "babel-loader": "^8.0.0-beta.4",
